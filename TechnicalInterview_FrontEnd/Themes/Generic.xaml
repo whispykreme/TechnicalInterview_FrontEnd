@@ -1,0 +1,174 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:conv="clr-namespace:TechnicalInterview_FrontEnd.Converters">
+
+    <!--#region Converters -->
+    <conv:StatusColorConvert x:Key="StatusColorConverter" />
+    <!--#endregion-->
+
+    <!--#region Colors -->
+    <Color x:Key="Blue">#0d6efd</Color>
+    <Color x:Key="Grey800">#343a40</Color>
+    <Color x:Key="Green">#198754</Color>
+    <Color x:Key="Red">#dc3545</Color>
+    <Color x:Key="Yellow">#ffc107</Color>
+    <Color x:Key="Cyan">#20c997</Color>
+    <!--#endregion-->
+
+    <!--#region Brushes -->
+    <SolidColorBrush x:Key="Primary"
+                     Color="{StaticResource Blue}" />
+    <SolidColorBrush x:Key="Secondary"
+                     Color="{StaticResource Grey800}" />
+    <SolidColorBrush x:Key="Success"
+                     Color="{StaticResource Green}" />
+    <SolidColorBrush x:Key="Danger"
+                     Color="{StaticResource Red}" />
+    <SolidColorBrush x:Key="Warning"
+                     Color="{StaticResource Yellow}" />
+    <SolidColorBrush x:Key="Info"
+                     Color="{StaticResource Cyan}" />
+    <!--#endregion-->
+
+    <!--#region TextBoxes -->
+    <Style TargetType="TextBox"
+           x:Key="StyledTextBox">
+        <Setter Property="FontSize"
+                Value="24" />
+        <Setter Property="FontFamily"
+                Value="Lucida Sans" />
+        <Setter Property="BorderBrush"
+                Value="{StaticResource Secondary}" />
+        <Setter Property="BorderThickness"
+                Value="0 0 0 2" />
+    </Style>
+
+    <!--#region SearchBox -->
+    <Style TargetType="{x:Type TextBox}"
+           x:Key="SearchBox">
+        <Setter Property="FontSize"
+                Value="24" />
+        <Setter Property="SnapsToDevicePixels"
+                Value="True" />
+        <Setter Property="OverridesDefaultStyle"
+                Value="True" />
+        <Setter Property="KeyboardNavigation.TabNavigation"
+                Value="None" />
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}" />
+        <Setter Property="MinWidth"
+                Value="120" />
+        <Setter Property="MinHeight"
+                Value="20" />
+        <Setter Property="AllowDrop"
+                Value="true" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                    <Border Name="Border"
+                            CornerRadius="2"
+                            Padding="2"
+                            BorderThickness="1">
+                        <Border.Background>
+                            <SolidColorBrush Color="White" />
+                        </Border.Background>
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="{StaticResource Blue}" />
+                        </Border.BorderBrush>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                                      Storyboard.TargetProperty="(Panel.Background).
+                                                                      (SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0"
+                                                                 Value="{StaticResource Grey800}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="ReadOnly">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                                      Storyboard.TargetProperty="(Panel.Background).
+                                                                      (SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0"
+                                                                 Value="{StaticResource Grey800}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="MouseOver" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ScrollViewer Margin="0"
+                                      x:Name="PART_ContentHost" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    <!--#endregion-->
+
+    <!--#region TextBlocks -->
+    <Style TargetType="TextBlock"
+           x:Key="StyledTextBlock">
+        <Setter Property="FontSize"
+                Value="24" />
+        <Setter Property="FontFamily"
+                Value="Lucida Sans" />
+    </Style>
+    <!--#endregion-->
+
+    <!--#region Button -->
+    <Style TargetType="{x:Type Button}"
+           x:Key="StyledButton">
+        <Setter Property="FontSize" 
+                Value="24"/>
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="3"
+                            Background="{StaticResource Primary}"
+                            BorderThickness="0">
+                        <ContentPresenter x:Name="ContentPresenter"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Margin="6 0"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type Button}"
+           x:Key="RoundedButton">
+        <Setter Property="FontSize"
+                Value="24" />
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="3"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="0">
+                        <ContentPresenter x:Name="ContentPresenter"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Margin="6 0"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+
+</ResourceDictionary>

@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="TechnicalInterview_FrontEnd.Views.VoterSearch.VoterSearchView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TechnicalInterview_FrontEnd.Views.VoterSearch"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    Grid.Column="0"
+                    Orientation="Vertical"
+                    Margin="4 12 4 0">
+            <TextBlock Text="VOTER ID"
+                       FontSize="24"
+                       FontWeight="Bold" 
+                       FontFamily="Lucida Sans"/>
+            <TextBox Style="{StaticResource SearchBox}"
+                     Width="200"
+                     Text="{Binding VoterId, UpdateSourceTrigger=PropertyChanged}">
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Enter"
+                                Command="{Binding SearchCommand}" />
+                    <KeyBinding Key="Return"
+                                Command="{Binding SearchCommand}" />
+                </TextBox.InputBindings>
+            </TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0"
+                    Grid.Column="1"
+                    Orientation="Vertical"
+                    Margin="0 12 4 0">
+            <TextBlock Text="LAST NAME"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       FontFamily="Lucida Sans" />
+            <TextBox Style="{StaticResource SearchBox}"
+                     Width="200"
+                     Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}">
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Enter"
+                                Command="{Binding SearchCommand}" />
+                    <KeyBinding Key="Return"
+                                Command="{Binding SearchCommand}" />
+                    </TextBox.InputBindings>
+            </TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0"
+                    Grid.Column="2"
+                    Orientation="Vertical"
+                    Margin="0 12 4 0">
+            <TextBlock Text="FIRST NAME"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       FontFamily="Lucida Sans" />
+            <TextBox Name="TextBoxHeightRef"
+                     Style="{StaticResource SearchBox}"
+                     Width="200"
+                     Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}">
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Enter"
+                                Command="{Binding SearchCommand}" />
+                    <KeyBinding Key="Return"
+                                Command="{Binding SearchCommand}" />
+                </TextBox.InputBindings>
+            </TextBox>
+        </StackPanel>
+
+        <Button Grid.Row="0"
+                Grid.Column="3"
+                Margin="0 12 4 0"
+                Style="{StaticResource StyledButton}" 
+                Height="{Binding Path=ActualHeight, ElementName=TextBoxHeightRef}"
+                VerticalAlignment="Bottom"
+                Content="SEARCH"
+                Command="{Binding SearchCommand}"/>
+
+        <DataGrid Grid.Row="1"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="4" 
+                  Margin="4 12"
+                  IsReadOnly="True"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  SelectionMode="Single"
+                  SelectedItem="{Binding SelectedVoter, UpdateSourceTrigger=PropertyChanged}" 
+                  SelectedValuePath="VoterId"
+                  ItemsSource="{Binding VoterSearchList, UpdateSourceTrigger=PropertyChanged}"/>
+
+    </Grid>
+</UserControl>
